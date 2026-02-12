@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Error{% endblock %}
+
+{% block body %}
+	<main>
+		<section>
+		<header>
+			<h1>404 Not found</h1>
+		</header>
+			<ul>
+				<li>
+					<p>This page could not be found.</p>
+				</li>
+				<li>
+					<a href="{{ path('home') }}">← Retour à l’accueil</a>
+				</li>
+			</ul>
+		</section>
+	</main>
+{% endblock %}

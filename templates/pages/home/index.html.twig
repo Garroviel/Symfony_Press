@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+	<header>
+        <h1>SymfonyPress</h1>
+        <p>Liste des articles et catégories.</p>
+    </header>
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <section aria-labelledby="categories-title">
+        <h2 id="categories-title">Catégories</h2>
+
+        <nav aria-label="Liste des catégories">
+            <ul>
+                {% for category in categories %}
+                    <li>
+                        <a href="{{ path('category_show', { slug: category.slug }) }}">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </section>
+
+    <section aria-labelledby="articles-title">
+        <h2 id="articles-title">Articles</h2>
+
+        <ul aria-label="Liste des articles">
+            {% for article in articles %}
+                <li>
+                    {% include 'components/article_card.html.twig' with { article: article } only %}
+                </li>
+            {% else %}
+                <li role="alert">Aucun article pour le moment.</li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+{% endblock %}

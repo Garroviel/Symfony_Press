@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Admin | Articles{% endblock %}
+
+{% block body %}
+	<header>
+		{% if is_granted('ROLE_ADMIN')%}
+			<h1>Articles</h1>
+		{% else %}
+			<h1>Vos articles</h1>
+		{% endif %}
+		<p>
+			<a href="{{path('admin_article_new')}}">Créer un article</a>
+		<p>
+	<header>
+
+	<main>
+		<ul>
+            {% for article in articles %}
+                <li>
+                    {% include 'components/article_card.html.twig' with { article: article } only %}
+
+                    <nav aria-label="Actions sur l’article">
+                        <ul>
+                            <li>
+                                {% if is_granted('ROLE_ADMIN') or article.user == app.user %}
+									<a href="{{ path('admin_article_edit', {id: article.id}) }}">Éditer</a>
+								{% endif %}
+                            </li>
+                            <li>
+								{% if is_granted('ROLE_ADMIN') %}
+									<form
+										method="post"
+										action="{{ path('admin_article_delete', { id: article.id }) }}"
+										onsubmit="return confirm('Supprimer cet article ?');"
+									>
+										<input type="hidden" name="_token" value="{{ csrf_token('delete_article_' ~ article.id) }}">
+										<button type="submit">Supprimer</button>
+									</form>
+								{% endif %}
+                            </li>
+                        </ul>
+                    </nav>
+                </li>
+            {% else %}
+                <li role="alert">Aucun article.</li>
+            {% endfor %}
+        </ul>
+	<main>
+{% endblock %}

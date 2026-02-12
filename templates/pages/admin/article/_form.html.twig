@@ -1,0 +1,48 @@
+
+{{ form_start(form, { attr: { class: 'form', novalidate: 'novalidate' } }) }}
+
+{# Erreur globale "flash-like" #}
+{% if form.vars.submitted and not form.vars.valid %}
+  <div class="flash flash--error" role="alert">
+    Le formulaire contient des erreurs. Merci de corriger les champs ci-dessous.
+  </div>
+{% endif %}
+
+{# Erreurs globales du formulaire (CSRF, champs non présents dans le form, etc.) #}
+{% for error in form.vars.errors %}
+  <div class="form-errors">{{ error.message }}</div>
+{% endfor %}
+
+<div class="form-field">
+  {{ form_label(form.title) }}
+  {{ form_widget(form.title) }}
+  {% for error in form.title.vars.errors %}
+    <div class="form-errors">{{ error.message }}</div>
+  {% endfor %}
+</div>
+
+<div class="form-field">
+  {{ form_label(form.content) }}
+  {{ form_widget(form.content) }}
+  {% for error in form.content.vars.errors %}
+    <div class="form-errors">{{ error.message }}</div>
+  {% endfor %}
+</div>
+
+<div class="form-field">
+  {{ form_label(form.category) }}
+  {{ form_widget(form.category) }}
+  {% for error in form.category.vars.errors %}
+    <div class="form-errors">{{ error.message }}</div>
+  {% endfor %}
+</div>
+
+{# IMPORTANT : rend les champs cachés (dont _token CSRF) #}
+{{ form_rest(form) }}
+
+<div class="form-actions">
+  <button class="btn btn--primary" type="submit">{{ button_label|default('Enregistrer') }}</button>
+  <a class="btn" href="{{ path('admin_article_index') }}">Annuler</a>
+</div>
+
+{{ form_end(form, { render_rest: false }) }}

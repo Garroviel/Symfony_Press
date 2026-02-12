@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymfonyPress | Modifier — {{ article.title }}{% endblock %}
+
+{% block body %}
+    <header>
+        <h1>Modifier un article</h1>
+    </header>
+
+    <section>
+        {% include 'pages/admin/article/_form.html.twig' with { form: form, button_label: 'Enregistrer' } only %}
+    </section>
+
+    <section aria-label="Suppression">
+        <form
+            method="post"
+            action="{{ path('admin_article_delete', { id: article.id }) }}"
+            onsubmit="return confirm('Supprimer cet article ?');"
+        >
+            <input type="hidden" name="_token" value="{{ csrf_token('delete_article_' ~ article.id) }}">
+            <button type="submit">Supprimer</button>
+        </form>
+    </section>
+
+    <p><a href="{{ path('admin_article_index') }}">← Retour à la liste</a></p>
+{% endblock %}

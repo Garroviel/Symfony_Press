@@ -1,0 +1,29 @@
+<article class="card">
+    <header>
+        <h2>
+            <a href="{{ path('article_show', { slug: article.slug }) }}">
+                {{ article.title }}
+            </a>
+        </h2>
+
+        <p class="meta">
+            <time datetime="{{ article.createdAt|date('c') }}">
+                {{ article.createdAt|date('d/m/Y') }}
+            </time>
+            <span aria-hidden="true"> • </span>
+            <a href="{{ path('category_show', { slug: article.category.slug }) }}">
+                {{ article.category.name }}
+            </a>
+        </p>
+    </header>
+
+    <img
+        src="https://placehold.co/800x400?text={{ article.slug|url_encode }}"
+        alt="Illustration pour l’article {{ article.title }}"
+        loading="lazy"
+    >
+
+    <p>
+        {{ article.content|slice(0, 160) }}{% if article.content|length > 160 %}…{% endif %}
+    </p>
+</article>

@@ -1,3 +1,193 @@
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { font-size: 16px; }
+
 body {
-    background-color: skyblue;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  background: #0b1220;
+  color: #e7eefc;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; display: block; height: auto; }
+
+ul { margin: 0; padding-left: 1.2rem; }
+li { margin: 0.25rem 0; }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: #fff;
+  color: #000;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+}
+.skip-link:focus { left: 0.75rem; top: 0.75rem; z-index: 9999; }
+
+/* ========== Layout ========== */
+.container {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.site-header,
+.site-footer {
+  background: #0f1a33;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.site-header { position: sticky; top: 0; z-index: 10; }
+.site-footer { border-top: 1px solid rgba(255,255,255,0.08); border-bottom: none; }
+
+.site-header__inner,
+.site-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.nav a {
+  display: inline-block;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.6rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.nav a[aria-current="page"] {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.18);
+}
+
+main { padding: 1.25rem 0 2rem; }
+
+.page-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.page-header h1 { margin: 0; font-size: 1.6rem; }
+.page-header p { margin: 0.25rem 0 0; opacity: 0.85; }
+
+.section {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 720px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 1rem;
+  padding: 0.9rem;
+}
+
+.card h2, .card h3 { margin: 0 0 0.35rem; }
+
+.meta {
+  margin: 0 0 0.6rem;
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+.form { display: grid; gap: 0.9rem; }
+
+.form-field label {
+  display: block;
+  font-weight: 650;
+  margin-bottom: 0.35rem;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.18);
+  color: inherit;
+}
+
+.form-field textarea { resize: vertical; min-height: 180px; }
+
+.form-errors {
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  color: #ffb3b3;
+}
+.form-errors ul { margin: 0.25rem 0 0; padding-left: 1.2rem; }
+.form-errors li { margin: 0; }
+
+.form-actions { display: flex; gap: 0.6rem; align-items: center; }
+.flash {
+  border-radius: 0.9rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 0.8rem;
+}
+
+.flash--success { background: rgba(80, 200, 120, 0.12); border-color: rgba(80,200,120,0.25); }
+.flash--error   { background: rgba(255, 90, 90, 0.10); border-color: rgba(255,90,90,0.22); }
+.flash--warning { background: rgba(255, 200, 80, 0.10); border-color: rgba(255,200,80,0.22); }
+
+.form-field input[type="checkbox"]{
+  width: auto;
+  padding: 0;
+  border-radius: 0.25rem;
+  background: transparent;
+  vertical-align: middle;
+}
+.form-field--checkbox{
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.form-field--checkbox label{
+  margin: 0;
+  font-weight: 650;
+  display: inline;
 }

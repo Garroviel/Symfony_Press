@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Error{% endblock %}
+
+{% block body %}
+	<main>
+		<section>
+		<header>
+			<h1>500 Server Error</h1>
+		</header>
+			<ul>
+				<li>
+					<p>The server encountered an internal error.</p>
+				</li>
+				<li>
+					<a href="{{ path('home') }}">SymfonyPress</a>
+				</li>
+			</ul>
+		</section>
+	</main>
+{% endblock %}

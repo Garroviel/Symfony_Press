@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+  <main class="auth" id="main-content">
+    <section class="auth-card" aria-labelledby="register-title">
+      <header class="auth-header">
+        <h1 id="register-title">Inscription</h1>
+        <p class="auth-subtitle">Crée ton compte pour accéder au back-office.</p>
+      </header>
+
+      {# Message global #}
+      {% if registrationForm.vars.submitted and not registrationForm.vars.valid %}
+        <div class="flash flash--error" role="alert">
+          Le formulaire contient des erreurs. Merci de corriger les champs ci-dessous.
+        </div>
+      {% endif %}
+
+      {{ form_start(registrationForm, { attr: { class: 'form', novalidate: 'novalidate' } }) }}
+
+        <div class="form-field">
+          {{ form_label(registrationForm.email) }}
+          {{ form_widget(registrationForm.email) }}
+          <div class="form-errors">{{ form_errors(registrationForm.email) }}</div>
+        </div>
+
+        <div class="form-field">
+          {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
+          {{ form_widget(registrationForm.plainPassword) }}
+          <div class="form-errors">{{ form_errors(registrationForm.plainPassword) }}</div>
+        </div>
+
+        <div class="form-field form-field--checkbox">
+			{{ form_widget(registrationForm.agreeTerms) }}
+			{{ form_label(registrationForm.agreeTerms) }}
+		</div>
+		<div class="form-errors">{{ form_errors(registrationForm.agreeTerms) }}</div>
+
+        {{ form_rest(registrationForm) }}
+
+        <div class="form-actions">
+          <button class="btn btn--primary" type="submit">Créer mon compte</button>
+          <a class="btn" href="{{ path('app_login') }}">J’ai déjà un compte</a>
+        </div>
+
+      {{ form_end(registrationForm, { render_rest: false }) }}
+    </section>
+  </main>
+{% endblock %}

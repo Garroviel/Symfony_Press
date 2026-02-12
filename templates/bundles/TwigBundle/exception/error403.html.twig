@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Error{% endblock %}
+
+{% block body %}
+	<main>
+		<section>
+		<header>
+			<h1>403 Forbidden</h1>
+		</header>
+			<ul>
+				<li>
+					<p>You are not authorized to view this page.</p>
+				</li>
+				<li>
+					<a href="{{ path('home') }}">← Retour à l’accueil</a>
+				</li>
+			</ul>
+		</section>
+	</main>
+{% endblock %}
